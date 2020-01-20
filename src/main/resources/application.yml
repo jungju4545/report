@@ -1,0 +1,43 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+
+spring:
+  mvc: 
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cos?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: cos
+    password: Bitc5600!
+   
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate.enable_lazy_load_no_trans: true
+      hibernate.format_sql: true
+      
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      
+  security:
+    user:
+      name: test
+      password: test
+
+file:
+  path: C:/tool/springwork/marketProject/src/main/resources/static/upload/
