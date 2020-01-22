@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="/" method ="get">
+
+<input type="button" value="주방용품" onClick="kitchin()">
+<input type="button" value="사무용품" onClick="office()">
+<input type="button" value="욕실용품" onClick="bath()">
+<input type="button" value="가격순" onClick="price()">						
+<input type="button" value="주문수량순서" onClick="order()">
+
 <table>
 	<tr>
 		<td>id</td>
@@ -34,5 +42,16 @@
 	</tr>
 	</c:forEach>
 	</table>
+</form>
 </body>
+<script>
+function kitchin(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET","http://localhost:8000/category",true);
+	
+	
+}
+
+
+</script>
 </html>

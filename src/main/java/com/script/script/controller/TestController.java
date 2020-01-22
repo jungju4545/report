@@ -1,12 +1,13 @@
 package com.script.script.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.script.script.model.Product;
 import com.script.script.repository.ProductRepository;
@@ -17,6 +18,7 @@ public class TestController {
 	@Autowired
 	private ProductRepository pr;
 	
+	// 리스트 전체
 	@GetMapping("/")
 	public  String testProduct(Model model) {
 		List<Product> products = pr.findAll();
@@ -24,5 +26,12 @@ public class TestController {
 		return "/index";
 	}
 	
+	//카테고리 별 리스트
+	@GetMapping("/category")
+	public String category(Model model,@PathVariable int p_type){
+		List<Product> products = pr.findCategory(p_type);
+		model.addAttribute("products",products);
+		return "index";
+	}
 	
 }
