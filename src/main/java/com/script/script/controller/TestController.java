@@ -18,20 +18,14 @@ public class TestController {
 	@Autowired
 	private ProductRepository pr;
 	
-	// 리스트 전체
-	@GetMapping("/")
-	public  String testProduct(Model model) {
-		List<Product> products = pr.findAll();
-	    model.addAttribute("products",products);
-		return "/index";
-	}
+//	// 리스트 전체
+//	@GetMapping("/")
+//	public  String testProduct(Model model) {
+//		List<Product> products = pr.findAll();
+//	    model.addAttribute("products",products);
+//		return "/index";
+//	}
 	
-	//카테고리 별 리스트
-	@GetMapping("/category")
-	public String category(Model model,@PathVariable int p_type){
-		List<Product> products = pr.findCategory(p_type);
-		model.addAttribute("products",products);
-		return "index";
-	}
+
 	
 }

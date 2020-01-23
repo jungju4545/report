@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.script.script.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
-	@Query(value="SELECT * FROM product WHERE p_type=?",nativeQuery = true)
-	List<Product> findCategory(int p_type);
+//	@Query(value="SELECT * FROM product WHERE p_type=?",nativeQuery = true)
+	List<Product> findByCategory(String category);
+//	@Query(value="SELECT * FROM product ORDER BY price DESC",nativeQuery = true)
+	public List<Product> findAllByOrderByPriceDesc();
+	public List<Product> findAllByOrderByOrderDesc();
+	public List<Product> findAllByOrderByMakeDesc();
 }

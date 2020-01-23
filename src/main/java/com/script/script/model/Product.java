@@ -1,5 +1,6 @@
 package com.script.script.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,18 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String pid;
+	@Column(name="pid")
+	private String make;
+	
 	private String p_name;
-	private String p_order;
+	@Column(name="p_order")
+	private int order;
 	private String uid;
 	private String u_age;
-	private String p_prise;
-	private String p_type;
+	@Column(name="p_prise")
+	private int price;
+	@Column(name="p_type")
+	private String category; // 언더바가 있는 컬럼 관리할때
 	private String createTime;
 	
 }
