@@ -33,7 +33,7 @@
 		<td>주문자 나이</td>
 		<td>제품가격</td>
 		<td>카테고리</td>
-		<td>생산날짜</td>
+		<td>제조날짜</td>
 	</tr>
 </thead>
 
@@ -67,10 +67,11 @@ $("#resultWhole").click(function(){
 		dateType:'json',
 		success:function(data){
 				
-			 $(".origin-tbody").remove();
+			$(".origin-tbody").remove();
 			$(".new-tbody").remove();
 				// $(".new-tbody").remove(); 안붙이면 클릭할때마다 계속 늘어난다.
 				// 그래서 클릭시 만들더진 new-tbody는 제거가 된 후 다시 만들어져야 한다.
+				//선택자는 여기$newTbody=$("<tbody class='new-tbody'></tbody>")에서 설정한 new-tbody이다.
 
 			$newTbody=$("<tbody class='new-tbody'></tbody>");
 			$(".origin-table").append($newTbody)
@@ -92,7 +93,9 @@ $("#resultWhole").click(function(){
 					$newTbody.append($newRow);
 				} 
 			
-			}
+			},error:function(){
+			alert("error");
+				}
 	});
 });
 
@@ -131,7 +134,10 @@ $("#resultKitchen").click(function(){
 
 
 			
-			}
+			},
+			error:function(){
+				alert("error");
+				}
 	});
 });
 
@@ -178,7 +184,10 @@ $("#resultBath").click(function(){
 		
 
 			
-			}
+			},
+			error:function(){
+				alert("error");
+				}
 	});
 });
 ///////////////가격순서/////////////
@@ -192,7 +201,10 @@ count++;
 		dateType:'json',
 		success:function(data){
 			createTable(data);
-		  }
+		  },
+			error:function(){
+				alert("error");
+				}
 	   });
 			
 	} // 클릭 한번하면 내림차순
@@ -206,7 +218,10 @@ count++;
 
 					createTable(data);
 
-			}
+			},
+			error:function(){
+				alert("error");
+				}
 	
 		});
 	}//한번 더 하면 오름차순 >> 반복
@@ -214,50 +229,71 @@ count++;
 });
 
 $("#resultOrder").click(function(){
+	count++;
+	if(count%2==1){
 	$.ajax({
 		method:"GET",
 		url:"/odesc",
 		dateType:'json',
 		success:function(data){
-
 			createTable(data);
-
+		  },
+			error:function(){
+				alert("error");
+				}
+	   });
 			
-			}
-	});
+	} // 클릭 한번하면 내림차순
+	
+	else{
+			$.ajax({
+				method:"GET",
+				url:"/oasc",
+				dateType:'json',
+				success:function(data){
+
+					createTable(data);
+
+			},
+			error:function(){
+				alert("error");
+				}
+	
+		});
+	}//한번 더 하면 오름차순 >> 반복
+	
 });
 
+
 $("#resultMake").click(function(){
+	count++;
+	if(count%2==1){
 	$.ajax({
 		method:"GET",
 		url:"/makedesc",
 		dateType:'json',
 		success:function(data){
-
-			$(".origin-tbody").remove();
-			$(".new-tbody").remove();
-			$newTbody=$("<tbody class='new-tbody'></tbody>");
-			$(".origin-table").append($newTbody)
-
-			for(let list of data){
-					let $newRow=$(
-							"<tr>"+
-							   "<td>"+list.id+"</td>"+
-							   "<td>"+list.make+"</td>"+
-								"<td>"+list.p_name+"</td>"+
-								"<td>"+list.order+"</td>"+
-								"<td>"+list.uid+"</td>"+
-								"<td>"+list.u_age+"</td>"+
-								"<td>"+list.price+"</td>"+
-								"<td>"+list.category+"</td>"+
-								"<td>"+list.createTime+"</td>"+
-								"</tr>"
-							);
-					$newTbody.append($newRow);
+			createTable(data);
+		  },
+			error:function(){
+				alert("error");
 				}
-			
-			}
-	});
+	   });
+	} // 클릭 한번하면 내림차순
+	else{
+			$.ajax({
+				method:"GET",
+				url:"/makeasc",
+				dateType:'json',
+				success:function(data){
+					createTable(data);
+			},
+			error:function(){
+				alert("error");
+				}
+		});
+	}//한번 더 하면 오름차순 >> 반복
+	
 });
 
 function createTable(data){
@@ -282,8 +318,6 @@ function createTable(data){
 					);
 			$newTbody.append($newRow);
 		}
-	
-	
 }
 
 </script>

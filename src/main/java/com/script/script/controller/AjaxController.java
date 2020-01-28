@@ -72,9 +72,23 @@ public class AjaxController {
 		return products;
 	}
 	
+	@GetMapping("/oasc")
+	public  @ResponseBody List<Product> orderAsc(Model model) {
+		List<Product> products = pr.findAllByOrderByOrderAsc();
+	    model.addAttribute("products",products);
+		return products;
+	}
+	
 	@GetMapping("/makedesc")
 	public  @ResponseBody List<Product> makeDesc(Model model) {
-		List<Product> products = pr.findAllByOrderByMakeDesc();
+		List<Product> products = pr.findAllByOrderByCreateTimeDesc();
+	    model.addAttribute("products",products);
+		return products;
+	}
+	
+	@GetMapping("/makeasc")
+	public  @ResponseBody List<Product> makeAsc(Model model) {
+		List<Product> products = pr.findAllByOrderByCreateTimeAsc();
 	    model.addAttribute("products",products);
 		return products;
 	}
