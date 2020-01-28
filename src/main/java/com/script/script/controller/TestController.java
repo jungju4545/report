@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.script.script.model.Product;
 import com.script.script.repository.ProductRepository;
@@ -18,14 +19,12 @@ public class TestController {
 	@Autowired
 	private ProductRepository pr;
 	
-//	// 리스트 전체
+	// 리스트 전체
 //	@GetMapping("/")
-//	public  String testProduct(Model model) {
+//	public @ResponseBody List<Product> testProduct(Model model) {
 //		List<Product> products = pr.findAll();
 //	    model.addAttribute("products",products);
-//		return "/index";
+//		return products;
 //	}
-	
-
 	
 }

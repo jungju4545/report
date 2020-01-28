@@ -12,6 +12,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	List<Product> findByCategory(String category);
 //	@Query(value="SELECT * FROM product ORDER BY price DESC",nativeQuery = true)
 	public List<Product> findAllByOrderByPriceDesc();
+	public List<Product> findAllByOrderByPriceAsc();
 	public List<Product> findAllByOrderByOrderDesc();
+	public List<Product> findAllByOrderByOrderAsc();
 	public List<Product> findAllByOrderByMakeDesc();
+	public List<Product> findAllByOrderByMakeAsc();
 }
